@@ -63,7 +63,8 @@
             const button = document.querySelector('.call-button');
             const sound = document.getElementById('voidSound');
             button.classList.add('active');
-            sound.play();
+            sound.load(); // Ensure the audio is ready to play
+            sound.play().catch(error => console.log("Audio playback failed:", error));
             sound.onended = () => {
                 button.classList.remove('active');
             };
