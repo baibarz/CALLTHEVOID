@@ -29,8 +29,13 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 100%;
+            height: 100vh;
+            width: 100vw;
             animation: fadeIn 3s ease-in-out;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
         @keyframes fadeIn {
             from { opacity: 0; }
@@ -38,7 +43,6 @@
         }
         .call-button {
             display: inline-block;
-            margin-top: 20px;
             padding: 10px 20px;
             background-color: white;
             color: black;
@@ -59,11 +63,14 @@
         }
     </style>
     <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const sound = document.getElementById('voidSound');
+            sound.load(); // Preload audio
+        });
         function playVoidSound() {
             const button = document.querySelector('.call-button');
             const sound = document.getElementById('voidSound');
             button.classList.add('active');
-            sound.load(); // Ensure the audio is ready to play
             sound.play().catch(error => console.log("Audio playback failed:", error));
             sound.onended = () => {
                 button.classList.remove('active');
